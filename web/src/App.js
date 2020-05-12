@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import Header from './Header';
+import './global.css';
+
 
 function App() {
+  
   return (
-   <Header/>
+    <div id="app">
+      <aside>
+
+      </aside>
+
+      <main>
+        
+      </main>
+
+    </div>
+
   );
 }
 
