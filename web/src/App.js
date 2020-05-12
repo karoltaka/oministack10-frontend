@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import './global.css';
 import './App.css';
 import './Sidebar.css';
+import './Main.css';
 
 
 function App() {
@@ -39,7 +40,55 @@ function App() {
       </aside>
 
       <main>
-        
+        <ul>
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars2.githubusercontent.com/u/63862417?s=460&u=a77cb40b026c35164d443fe5ef6b4c8677e0d80f&v=4" alt="Karoline Costa"/>
+              <div className="user-info">
+                <strong>Karoline Costa</strong>
+                <span>React, React Native, Node.js</span>
+              </div>
+            </header>
+            <p>Apaixonada pelas melhores tecnologias de desenvolvimento Web</p>
+            <a href="https://github.com/karoltaka">Acessar perfil no Github</a>
+          </li>
+
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars2.githubusercontent.com/u/63862417?s=460&u=a77cb40b026c35164d443fe5ef6b4c8677e0d80f&v=4" alt="Karoline Costa"/>
+              <div className="user-info">
+                <strong>Karoline Costa</strong>
+                <span>React, React Native, Node.js</span>
+              </div>
+            </header>
+            <p>Apaixonada pelas melhores tecnologias de desenvolvimento Web</p>
+            <a href="https://github.com/karoltaka">Acessar perfil no Github</a>
+          </li>
+
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars2.githubusercontent.com/u/63862417?s=460&u=a77cb40b026c35164d443fe5ef6b4c8677e0d80f&v=4" alt="Karoline Costa"/>
+              <div className="user-info">
+                <strong>Karoline Costa</strong>
+                <span>React, React Native, Node.js</span>
+              </div>
+            </header>
+            <p>Apaixonada pelas melhores tecnologias de desenvolvimento Web</p>
+            <a href="https://github.com/karoltaka">Acessar perfil no Github</a>
+          </li>
+
+          <li className="dev-item">
+            <header>
+              <img src="https://avatars2.githubusercontent.com/u/63862417?s=460&u=a77cb40b026c35164d443fe5ef6b4c8677e0d80f&v=4" alt="Karoline Costa"/>
+              <div className="user-info">
+                <strong>Karoline Costa</strong>
+                <span>React, React Native, Node.js</span>
+              </div>
+            </header>
+            <p>Apaixonada pelas melhores tecnologias de desenvolvimento Web</p>
+            <a href="https://github.com/karoltaka">Acessar perfil no Github</a>
+          </li>
+        </ul>
       </main>
 
     </div>
