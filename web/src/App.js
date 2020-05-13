@@ -8,6 +8,8 @@ import './Main.css';
 
 
 function App() {
+  const [devs, setDevs] = useState([]);
+
   const [github_username, setGithubUsername] = useState('');
   const [techs, setTechs] = useState('');
 
@@ -31,6 +33,16 @@ function App() {
     )
   }, []);
 
+  useEffect(() => {
+    async function loadDevs() {
+      const response = await api.get('/devs');
+
+      setDevs(response.data);
+    }
+
+    loadDevs();
+  }, []);
+
   async function handleAddDev(e) {
     e.preventDefault();
 
@@ -41,7 +53,8 @@ function App() {
       longitude,
     })
 
-    console.log(response.data);
+    setGithubUsername('');
+    setTechs('');
   }
 
   return (
@@ -103,53 +116,19 @@ function App() {
 
       <main>
         <ul>
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars2.githubusercontent.com/u/63862417?s=460&u=a77cb40b026c35164d443fe5ef6b4c8677e0d80f&v=4" alt="Karoline Costa"/>
-              <div className="user-info">
-                <strong>Karoline Costa</strong>
-                <span>React, React Native, Node.js</span>
-              </div>
-            </header>
-            <p>Apaixonada pelas melhores tecnologias de desenvolvimento Web</p>
-            <a href="https://github.com/karoltaka">Acessar perfil no Github</a>
-          </li>
-
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars2.githubusercontent.com/u/63862417?s=460&u=a77cb40b026c35164d443fe5ef6b4c8677e0d80f&v=4" alt="Karoline Costa"/>
-              <div className="user-info">
-                <strong>Karoline Costa</strong>
-                <span>React, React Native, Node.js</span>
-              </div>
-            </header>
-            <p>Apaixonada pelas melhores tecnologias de desenvolvimento Web</p>
-            <a href="https://github.com/karoltaka">Acessar perfil no Github</a>
-          </li>
-
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars2.githubusercontent.com/u/63862417?s=460&u=a77cb40b026c35164d443fe5ef6b4c8677e0d80f&v=4" alt="Karoline Costa"/>
-              <div className="user-info">
-                <strong>Karoline Costa</strong>
-                <span>React, React Native, Node.js</span>
-              </div>
-            </header>
-            <p>Apaixonada pelas melhores tecnologias de desenvolvimento Web</p>
-            <a href="https://github.com/karoltaka">Acessar perfil no Github</a>
-          </li>
-
-          <li className="dev-item">
-            <header>
-              <img src="https://avatars2.githubusercontent.com/u/63862417?s=460&u=a77cb40b026c35164d443fe5ef6b4c8677e0d80f&v=4" alt="Karoline Costa"/>
-              <div className="user-info">
-                <strong>Karoline Costa</strong>
-                <span>React, React Native, Node.js</span>
-              </div>
-            </header>
-            <p>Apaixonada pelas melhores tecnologias de desenvolvimento Web</p>
-            <a href="https://github.com/karoltaka">Acessar perfil no Github</a>
-          </li>
+          {devs.map(dev => (
+            <li key={dev._id}className="dev-item">
+              <header>
+                <img src={dev.avatar_url} alt={dev.name}/>
+                <div className="user-info">
+                  <strong>{dev.name}</strong>
+                  <span>{dev.techs.join(', ')}</span>
+                </div>
+              </header>
+              <p>{dev.bio}</p>
+              <a href={`https://github.com/${dev.github_username}`}>Acessar perfil no Github</a>
+            </li>
+          ))}
         </ul>
       </main>
 
