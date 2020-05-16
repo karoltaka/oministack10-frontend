@@ -3,7 +3,7 @@ import { StyleSheet, Image, View, Text } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import { requestPermissionsAsync, getCurrentPositionAsync } from 'expo-location';
 
-function Main() {
+function Main({ navigation }) {
   const [currentRegion, setCurrerntRegion ] = useState(null);
   useEffect(() => {
     async function loadInitialPosition() {
@@ -37,7 +37,10 @@ function Main() {
       <Marker coordinate={{ latitude: -7.2038863, longitude: -48.1914425 }}>
         <Image style={styles.avatar} source={{ uri: 'https://avatars2.githubusercontent.com/u/63862417?s=460&u=a77cb40b026c35164d443fe5ef6b4c8677e0d80f&v=4'}} />
     
-        <Callout>
+        <Callout onPress={() => {
+          //navegação
+          navigation.navigate('Profile', { github_username: 'karoltaka' });
+        }}>
           <View style={styles.Callout}>
             <Text style={styles.devName}>Karoline Takahagassi</Text>
             <Text style={styles.devBio}>Apaixonada pelas melhores tecnologias de desenvolvimento Web e Mobile</Text>
