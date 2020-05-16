@@ -39,11 +39,11 @@ function Main({ navigation }) {
       params: {
         latitude,
         longitude,
-        techs: 'ReactJS'
+        techs: 'React Native'
       }
     });
 
-    setDevs(response.data);
+    setDevs(response.data.devs);
   }
 
   function handleRegionChanged(region){
@@ -61,28 +61,31 @@ function Main({ navigation }) {
         initialRegion={currentRegion} 
         style={styles.map}
       >
-        <Marker 
-          coordinate={{ 
-            latitude: -7.2038863, 
-            longitude: -48.1914425 
-          }}
-        >
-          <Image 
-            style={styles.avatar} 
-            source={{ uri: 'https://avatars2.githubusercontent.com/u/63862417?s=460&u=a77cb40b026c35164d443fe5ef6b4c8677e0d80f&v=4'}} 
-          />
-      
-          <Callout onPress={() => {
-            //navegação
-            navigation.navigate('Profile', { github_username: 'karoltaka' });
-          }}>
-            <View style={styles.Callout}>
-              <Text style={styles.devName}>Karoline Takahagassi</Text>
-              <Text style={styles.devBio}>Apaixonada pelas melhores tecnologias de desenvolvimento Web e Mobile</Text>
-              <Text style={styles.devTechs}>ReactJS, React Native, Node.js</Text>
-            </View>
-          </Callout>
-        </Marker>
+        {devs.map(dev => (
+          <Marker 
+            key={dev._id}
+            coordinate={{ 
+              latitude: dev.location.coordinates[1], 
+              longitude: dev.location.coordinates[0],
+            }}
+          >
+            <Image 
+              style={styles.avatar} 
+              source={{ uri: dev.avatar_url }} 
+            />
+        
+            <Callout onPress={() => {
+              //navegação
+              navigation.navigate('Profile', { github_username: dev.github_username });
+            }}>
+              <View style={styles.Callout}>
+                <Text style={styles.devName}>{dev.name}</Text>
+                <Text style={styles.devBio}>{dev.bio}</Text>
+                <Text style={styles.devTechs}>{dev.techs.join(', ')}</Text>
+              </View>
+            </Callout>
+          </Marker>
+        ))}
       </MapView>
       <View style={styles.searchForm}>
         <TextInput
@@ -93,7 +96,7 @@ function Main({ navigation }) {
           autoCorrect={false}
         />
 
-        <TouchableOpacity onPress={() => {}} style={styles.loadButton}>
+        <TouchableOpacity onPress={loadDevs} style={styles.loadButton}>
           <MaterialIcons name= "my-location" size={20} color="#fff" />
 
         </TouchableOpacity>
